@@ -1,0 +1,78 @@
+{
+  "private": true,
+  "name": "apollo-lite",
+  "description": "An app to learn about various chord qualities",
+  "version": "1.0.0",
+  "author": "Roger Simon",
+  "main": "app/background.js",
+  "productName": "Apollo Lite",
+  "scripts": {
+    "dev": "nextron",
+    "prod": "export NODE_ENV=production && nextron",
+    "clean": "rm -rf dist app build && mkdir build",
+    "build": "npm run clean && export NODE_ENV=production && nextron build --win --ia32 && cp -R dist/ build && npm run build:mac-universal && cp -R dist/ build && rm -r -d build/*/ && find build -type f -name \"* *\" -exec bash -c 'mv \"$0\" \"${0// /-}\"' {} \\;",
+    "build:mac-universal": "nextron build -m --universal",
+    "postinstall": "electron-builder install-app-deps"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.395.0",
+    "@headlessui/react": "^1.7.17",
+    "@heroicons/react": "^2.0.18",
+    "@tonaljs/chord-detect": "^4.8.0",
+    "animate.css": "^4.1.1",
+    "aws-sdk": "^2.1440.0",
+    "dotenv": "^16.3.1",
+    "electron-serve": "^1.1.0",
+    "electron-store": "^8.1.0",
+    "electron-updater": "^5.3.0",
+    "framer-motion": "^10.12.4",
+    "jsonwebtoken": "^9.0.0",
+    "moment-timezone": "^0.5.43",
+    "node-localstorage": "^2.2.1",
+    "posthog-js": "^1.68.5",
+    "react-color": "^2.19.3",
+    "react-toastify": "^9.1.2",
+    "tonal": "^6.0.0",
+    "uuid": "^9.0.0",
+    "webmidi": "^3.1.5"
+  },
+  "devDependencies": {
+    "@electron/notarize": "^1.2.3",
+    "@types/jsonwebtoken": "^9.0.2",
+    "@types/node": "^20.4.1",
+    "@types/node-localstorage": "^1.3.0",
+    "@types/react": "^18.0.26",
+    "@types/uuid": "^9.0.2",
+    "@types/ws": "^8.5.10",
+    "autoprefixer": "^10.4.16",
+    "css-loader": "^6.7.3",
+    "electron": "^21.3.3",
+    "electron-builder": "^23.6.0",
+    "next": "^12.3.4",
+    "nextron": "^8.5.0",
+    "postcss": "^8.4.31",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "style-loader": "^3.3.2",
+    "tailwindcss": "^3.3.5",
+    "ts-loader": "^9.4.4",
+    "typescript": "^4.9.5"
+  },
+  "build": {
+    "mac": {
+      "hardenedRuntime": true,
+      "icon": "icon-white.icns"
+    },
+    "win": {
+      "icon": "icon-white.ico"
+    },
+    "linux": {
+      "icon": "icon-white.png"
+    },
+    "afterSign": "scripts/notarize.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rog7/apollo-lite"
+  }
+}

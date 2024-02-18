@@ -1,0 +1,8 @@
+node_modules
+*.log
+.next
+app
+dist
+electron-builder.yml
+build
+next.config.js

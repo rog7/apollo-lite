@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html,
+body {
+  margin: 0;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+html * {
+  font-family: "Outfit", sans-serif;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+:not(.no-transition *) {
+  transition: background-color 0.5s, color 0.5s, border-color 0.5s, stroke 0.5s,
+    fill 0.5s;
+}
+
+#fire-symbol {
+  transition: fill 0.5s;
+}
+
+input::placeholder {
+  opacity: 0.3;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+button {
+  outline: 2px solid transparent;
+}
